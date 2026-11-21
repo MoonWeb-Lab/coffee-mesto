@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ru" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Кофе Место — Меню завтраков и предзаказ | Минск, Независимости 43</title>
+    <meta name="description" content="Онлайн-меню кофейни Кофе Место на пр-те Независимости 43 в Минске. Спешелти кофе, сытные и сладкие завтраки весь день до 18:00, драники, боулы и выпечка." />
+    
+    <!-- Open Graph / Meta -->
+    <meta property="og:type" content="restaurant.menu" />
+    <meta property="og:title" content="Кофе Место — Меню завтраков и кофе" />
+    <meta property="og:description" content="Свежее меню завтраков, драников и спешелти кофе. Быстрый предзаказ навынос и бронь столиков." />
+    <meta property="og:image" content="./images/menu/local-breakfast.webp" />
+    <meta property="og:locale" content="ru_RU" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Structured Data (Schema.org Restaurant) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CafeOrCoffeeShop",
+      "name": "Кофе Место",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "пр-т Независимости, 43",
+        "addressLocality": "Минск",
+        "addressCountry": "BY",
+        "postalCode": "220005"
+      },
+      "telephone": "+375291234567",
+      "openingHours": ["Mo-Fr 09:00-22:00", "Sa-Su 10:00-22:00"],
+      "servesCuisine": "Specialty Coffee, Breakfasts, Brunch",
+      "priceRange": "$$"
+    }
+    </script>
+  </head>
+  <body class="bg-[#0f0f10] text-zinc-100 antialiased selection:bg-amber-500 selection:text-black">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
