@@ -75,8 +75,8 @@ export const MenuCard: React.FC<MenuCardProps> = ({
           </p>
         </div>
 
-        {/* KBJU line */}
-        <div className="flex items-center gap-1.5 text-[11px] text-[#786F66] bg-[#FAF7F2] px-2.5 py-1.5 rounded-xl border border-[#EFE9DF]">
+        {/* KBJU line without nested box */}
+        <div className="flex items-center gap-1.5 text-[11px] text-[#8C827A] pt-0.5">
           <Flame className="w-3.5 h-3.5 text-[#C86428] flex-shrink-0" />
           <span className="truncate">
             {item.kbju.calories} ккал • Б {item.kbju.protein}г • Ж {item.kbju.fat}г • У {item.kbju.carbs}г
