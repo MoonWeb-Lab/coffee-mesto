@@ -112,8 +112,8 @@ export const App: React.FC = () => {
         />
 
         {/* Menu Catalog Grid */}
-        <main className="flex-1 max-w-5xl mx-auto px-4 sm:px-6 py-8 w-full">
-          <div className="flex items-center justify-between mb-6">
+        <main className="flex-1 max-w-5xl mx-auto px-4 sm:px-6 py-4 sm:py-6 w-full">
+          <div className="flex items-center justify-between mb-3 sm:mb-4">
             <h2 className="text-base sm:text-lg font-extrabold text-[#1E1916] tracking-tight flex items-center gap-2">
               <span>Меню завтраков и кофе</span>
               <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-[#F3E8DC] text-[#8C4015]">

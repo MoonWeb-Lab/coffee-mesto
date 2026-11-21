@@ -17,9 +17,9 @@ export const CategoryNav: React.FC<CategoryNavProps> = ({
 }) => {
   return (
     <div className="sticky top-[69px] z-20 bg-[#FAF7F2]/95 backdrop-blur-md border-b border-[#E8E0D5] transition-all">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-3 pb-3">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-2 pb-2 sm:pt-2.5 sm:pb-2.5">
         {/* Search bar */}
-        <div className="relative mb-3">
+        <div className="relative mb-2 sm:mb-2.5">
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9E958C]" />
           <input
             type="text"
