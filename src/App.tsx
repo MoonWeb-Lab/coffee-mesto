@@ -101,7 +101,7 @@ export const App: React.FC = () => {
                 </div>
                 <div>
                   <h2 className="text-xs font-bold uppercase tracking-wider text-white">
-                    Завтраки и бранчи весь день
+                    Завтраки до 18:00 каждый день
                   </h2>
                   <p className="text-[11px] text-zinc-400 mt-0.5 leading-relaxed">
                     Драники, сырники, боулы и шакшука со свежей обжаркой Spiritus. Выберите блюда и оформите заказ ко времени визита.

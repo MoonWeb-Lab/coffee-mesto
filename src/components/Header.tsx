@@ -34,7 +34,7 @@ export const Header: React.FC<HeaderProps> = ({ cartCount, cartTotal, onOpenCart
             <div className="flex items-center gap-2">
               <h1 className="text-lg font-bold tracking-tight text-white">{CAFE_INFO.name}</h1>
               <span className="text-[10px] font-medium uppercase tracking-wider bg-zinc-800 text-zinc-300 px-1.5 py-0.5 rounded">
-                Бистро
+                Кофейня
               </span>
             </div>
             <div className="flex items-center gap-3 text-xs text-zinc-400 mt-0.5">

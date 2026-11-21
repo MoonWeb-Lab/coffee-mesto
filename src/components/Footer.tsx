@@ -14,7 +14,7 @@ export const Footer: React.FC = () => {
               <span>{CAFE_INFO.name}</span>
             </h4>
             <p className="text-zinc-400 leading-relaxed text-xs">
-              Городская кофейня и бистро завтраков в самом сердце Минска. Готовим сытные и сладкие завтраки до 18:00 каждый день.
+              Кофейня в центре Минска. Готовим сытные и сладкие завтраки до 18:00 каждый день, варим спешелти кофе свежей обжарки Spiritus.
             </p>
             <div className="flex items-center gap-2 text-zinc-400 text-xs pt-1">
               <MapPin className="w-3.5 h-3.5 text-amber-500 flex-shrink-0" />
