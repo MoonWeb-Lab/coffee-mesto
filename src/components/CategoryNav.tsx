@@ -16,30 +16,30 @@ export const CategoryNav: React.FC<CategoryNavProps> = ({
   onSearchChange,
 }) => {
   return (
-    <div className="sticky top-0 z-20 bg-[#0f0f10]/95 backdrop-blur-md border-b border-zinc-800/80 transition-all">
-      <div className="max-w-2xl mx-auto px-4 pt-3 pb-2.5">
+    <div className="sticky top-[69px] z-20 bg-[#FAF7F2]/95 backdrop-blur-md border-b border-[#E8E0D5] transition-all">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-3 pb-3">
         {/* Search bar */}
-        <div className="relative mb-2.5">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
+        <div className="relative mb-3">
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9E958C]" />
           <input
             type="text"
             placeholder="Найти драники, сырники, боул или кофе..."
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
-            className="w-full pl-9 pr-9 py-2 bg-zinc-900 border border-zinc-800 rounded-xl text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-amber-500/80 focus:ring-1 focus:ring-amber-500/30 transition-all"
+            className="w-full pl-10 pr-9 py-2.5 bg-white border border-[#E8E0D5] rounded-2xl text-xs sm:text-sm text-[#1E1916] placeholder-[#9E958C] focus:outline-none focus:border-[#C86428] focus:ring-1 focus:ring-[#C86428]/30 shadow-warm-sm transition-all"
           />
           {searchQuery && (
             <button
               onClick={() => onSearchChange('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-white"
+              className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#9E958C] hover:text-[#1E1916]"
             >
-              <X className="w-3.5 h-3.5" />
+              <X className="w-4 h-4" />
             </button>
           )}
         </div>
 
         {/* Categories scrollable row */}
-        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
           {CATEGORIES.map((cat) => {
             const isActive = activeCategory === cat.id;
             return (
@@ -49,10 +49,10 @@ export const CategoryNav: React.FC<CategoryNavProps> = ({
                   onSelectCategory(cat.id);
                   if (searchQuery) onSearchChange('');
                 }}
-                className={`flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${
+                className={`flex-shrink-0 px-3.5 py-2 rounded-full text-xs font-medium transition-all duration-200 ${
                   isActive
-                    ? 'bg-zinc-100 text-black shadow-sm font-semibold'
-                    : 'bg-zinc-900 text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800 border border-zinc-800'
+                    ? 'bg-[#1E1916] text-white shadow-warm-sm font-semibold scale-[1.02]'
+                    : 'bg-white text-[#6B625B] hover:text-[#1E1916] hover:bg-[#F3EFE7] border border-[#E8E0D5]'
                 }`}
               >
                 {cat.name}

@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
-import { LazyMotion, domAnimation, m, AnimatePresence } from 'framer-motion';
+import { LazyMotion, domAnimation } from 'framer-motion';
 import { Header } from './components/Header';
+import { Hero } from './components/Hero';
 import { CategoryNav } from './components/CategoryNav';
 import { MenuCard } from './components/MenuCard';
 import { DetailModal } from './components/DetailModal';
@@ -10,7 +11,6 @@ import { FloatingCartButton } from './components/FloatingCartButton';
 import { Footer } from './components/Footer';
 import { MENU_ITEMS } from './data/menuData';
 import { MenuItem, CartItem, OrderForm } from './types';
-import { Sparkles, UtensilsCrossed } from 'lucide-react';
 
 export const App: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -81,9 +81,14 @@ export const App: React.FC = () => {
     });
   }, [activeCategory, searchQuery]);
 
+  const featuredItem = useMemo(
+    () => MENU_ITEMS.find((it) => it.id === 'draniki-salmon') || MENU_ITEMS[0],
+    []
+  );
+
   return (
     <LazyMotion features={domAnimation}>
-      <div className="min-h-screen bg-[#0d0d0f] text-zinc-100 flex flex-col font-sans">
+      <div className="min-h-screen bg-[#FAF7F2] text-[#1E1916] flex flex-col font-sans selection:bg-[#F3E8DC] selection:text-[#C86428]">
         {/* Header */}
         <Header
           cartCount={cartCount}
@@ -91,33 +96,14 @@ export const App: React.FC = () => {
           onOpenCart={() => setIsCartOpen(true)}
         />
 
-        {/* Hero Section / Mini Highlights */}
-        <section className="bg-gradient-to-b from-[#141417] to-[#0d0d0f] border-b border-zinc-850 px-4 py-5">
-          <div className="max-w-2xl mx-auto">
-            <div className="bg-zinc-900/60 border border-zinc-800 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-sm">
-              <div className="flex items-start gap-3">
-                <div className="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 flex-shrink-0 mt-0.5">
-                  <Sparkles className="w-4 h-4" />
-                </div>
-                <div>
-                  <h2 className="text-xs font-bold uppercase tracking-wider text-white">
-                    Завтраки до 18:00 каждый день
-                  </h2>
-                  <p className="text-[11px] text-zinc-400 mt-0.5 leading-relaxed">
-                    Драники, сырники, боулы и шакшука со свежей обжаркой Spiritus. Выберите блюда и оформите заказ ко времени визита.
-                  </p>
-                </div>
-              </div>
+        {/* Hero Section with Morning Coffee Bistro Atmosphere */}
+        <Hero
+          featuredItem={featuredItem}
+          onAddToCart={handleAddToCart}
+          onOpenDetails={(it) => setSelectedItem(it)}
+        />
 
-              <div className="flex items-center gap-2 text-[11px] text-zinc-400 border-t sm:border-t-0 sm:border-l border-zinc-800 pt-2 sm:pt-0 sm:pl-4">
-                <UtensilsCrossed className="w-3.5 h-3.5 text-amber-500" />
-                <span>Готовим до 18:00</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Sticky Category and Search Bar */}
+        {/* Sticky Category and Search Navigation */}
         <CategoryNav
           activeCategory={activeCategory}
           onSelectCategory={setActiveCategory}
@@ -126,31 +112,31 @@ export const App: React.FC = () => {
         />
 
         {/* Menu Catalog Grid */}
-        <main className="flex-1 max-w-2xl mx-auto px-4 py-6 w-full">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-sm font-bold text-white tracking-tight flex items-center gap-2">
-              <span>Каталог блюд</span>
-              <span className="text-xs font-normal text-zinc-500">
-                ({filteredItems.length})
+        <main className="flex-1 max-w-5xl mx-auto px-4 sm:px-6 py-8 w-full">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-base sm:text-lg font-extrabold text-[#1E1916] tracking-tight flex items-center gap-2">
+              <span>Меню завтраков и кофе</span>
+              <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-[#F3E8DC] text-[#8C4015]">
+                {filteredItems.length}
               </span>
             </h2>
           </div>
 
           {filteredItems.length === 0 ? (
-            <div className="py-16 text-center bg-zinc-900/40 border border-zinc-800 rounded-2xl p-6">
-              <p className="text-sm font-semibold text-zinc-300">Ничего не найдено</p>
-              <p className="text-xs text-zinc-500 mt-1">
-                По запросу «{searchQuery}» блюд не найдено. Попробуйте сбросить поиск.
+            <div className="py-16 text-center bg-white border border-[#E8E0D5] rounded-3xl p-8 shadow-warm">
+              <p className="text-sm font-bold text-[#1E1916]">Блюд не найдено</p>
+              <p className="text-xs text-[#6B625B] mt-1">
+                По запросу «{searchQuery}» ничего не нашлось. Попробуйте сбросить поиск.
               </p>
               <button
                 onClick={() => setSearchQuery('')}
-                className="mt-3 px-4 py-1.5 rounded-full bg-zinc-800 text-xs text-zinc-200 hover:bg-zinc-700 transition-colors"
+                className="mt-4 px-5 py-2 rounded-full bg-[#1E1916] text-xs font-semibold text-white hover:bg-[#322A25] transition-colors shadow-warm-sm"
               >
                 Сбросить фильтр
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {filteredItems.map((item) => {
                 const cartItem = cart.find((ci) => ci.item.id === item.id);
                 return (

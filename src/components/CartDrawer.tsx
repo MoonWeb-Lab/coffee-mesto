@@ -50,7 +50,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
 
     const visitTime = customTime.trim() ? customTime.trim() : time;
 
-    // Format text for Telegram
+    // Format text for Telegram (strictly no em dashes)
     const formattedMessage = [
       `☕️ Заказ в «${CAFE_INFO.name}»`,
       `Формат: ${orderType === 'takeaway' ? 'Забрать с собой ко времени' : 'Бронь столика с предзаказом'}`,
@@ -59,15 +59,14 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
       `Время визита: ${visitTime}`,
       orderType === 'table' ? `Количество гостей: ${guestsCount}` : '',
       '',
-      'Позиции:',
+      'Позиции заказа:',
       ...items.map((ci, idx) => `${idx + 1}. ${ci.item.name} x ${ci.quantity} = ${ci.item.price * ci.quantity} BYN`),
       '',
       `Итого к оплате: ${total} BYN`,
-      comment.trim() ? `Комментарий: ${comment.trim()}` : '',
-      `Адрес заведения: ${CAFE_INFO.address}`
+      comment.trim() ? `Пожелания: ${comment.trim()}` : '',
+      `Адрес кофейни: ${CAFE_INFO.address}`
     ].filter(Boolean).join('\n');
 
-    // Fire celebratory confetti!
     confetti({
       particleCount: 80,
       spread: 70,
@@ -90,17 +89,17 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex justify-end bg-black/80 backdrop-blur-sm animate-fadeIn">
+    <div className="fixed inset-0 z-50 flex justify-end bg-black/60 backdrop-blur-sm animate-fadeIn">
       {/* Backdrop */}
       <div className="absolute inset-0" onClick={onClose}></div>
 
       {/* Drawer */}
-      <div className="relative w-full max-w-md h-full bg-[#141417] border-l border-zinc-800 flex flex-col z-10 shadow-2xl">
+      <div className="relative w-full max-w-md h-full bg-white border-l border-[#E8E0D5] flex flex-col z-10 shadow-2xl">
         {/* Drawer Header */}
-        <div className="p-4 border-b border-zinc-800 flex items-center justify-between">
+        <div className="p-4 border-b border-[#E8E0D5] flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <h2 className="text-base font-bold text-white">Ваш заказ</h2>
-            <span className="text-xs bg-zinc-800 text-amber-400 font-semibold px-2 py-0.5 rounded-full">
+            <h2 className="text-base font-bold text-[#1E1916]">Ваш заказ</h2>
+            <span className="text-xs bg-[#F3E8DC] text-[#8C4015] font-bold px-2.5 py-0.5 rounded-full">
               {items.reduce((acc, i) => acc + i.quantity, 0)} шт
             </span>
           </div>
@@ -109,7 +108,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
             {items.length > 0 && (
               <button
                 onClick={onClearCart}
-                className="text-xs text-zinc-500 hover:text-red-400 flex items-center gap-1 transition-colors"
+                className="text-xs text-[#9E958C] hover:text-red-500 flex items-center gap-1 transition-colors"
                 title="Очистить корзину"
               >
                 <Trash2 className="w-3.5 h-3.5" />
@@ -118,7 +117,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
             )}
             <button
               onClick={onClose}
-              className="w-8 h-8 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white flex items-center justify-center transition-colors"
+              className="w-8 h-8 rounded-full bg-[#FAF7F2] border border-[#E8E0D5] text-[#6B625B] hover:text-[#1E1916] flex items-center justify-center transition-colors"
             >
               <X className="w-4 h-4" />
             </button>
@@ -128,31 +127,31 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
         {/* Content */}
         {items.length === 0 ? (
           <div className="flex-1 flex flex-col items-center justify-center p-6 text-center">
-            <div className="w-16 h-16 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-600 mb-3">
+            <div className="w-16 h-16 rounded-full bg-[#FAF7F2] border border-[#E8E0D5] flex items-center justify-center text-[#9E958C] mb-3">
               <Coffee className="w-7 h-7" />
             </div>
-            <h3 className="text-sm font-semibold text-white">В заказе пока пусто</h3>
-            <p className="text-xs text-zinc-400 mt-1 max-w-xs">
-              Выберите драники, сырники или кофе из меню, чтобы оформить быстрый предзаказ.
+            <h3 className="text-sm font-bold text-[#1E1916]">В заказе пока пусто</h3>
+            <p className="text-xs text-[#6B625B] mt-1 max-w-xs leading-relaxed">
+              Выберите драники, сырники или кофе в меню, чтобы оформить предзаказ к нужному времени.
             </p>
             <button
               onClick={onClose}
-              className="mt-4 px-4 py-2 rounded-full bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-medium transition-colors"
+              className="mt-4 px-5 py-2.5 rounded-full bg-[#1E1916] hover:bg-[#322A25] text-white text-xs font-semibold transition-colors shadow-warm-sm"
             >
-              Перейти в меню
+              Перейти к меню
             </button>
           </div>
         ) : (
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
             {/* Format Switcher */}
-            <div className="bg-zinc-900 p-1 rounded-xl border border-zinc-800 flex items-center gap-1 text-xs font-medium">
+            <div className="bg-[#FAF7F2] p-1.5 rounded-2xl border border-[#E8E0D5] flex items-center gap-1 text-xs font-semibold">
               <button
                 type="button"
                 onClick={() => setOrderType('takeaway')}
-                className={`flex-1 py-2 px-2 rounded-lg flex items-center justify-center gap-1.5 transition-all ${
+                className={`flex-1 py-2 px-2 rounded-xl flex items-center justify-center gap-1.5 transition-all ${
                   orderType === 'takeaway'
-                    ? 'bg-amber-500 text-black font-semibold shadow-sm'
-                    : 'text-zinc-400 hover:text-white'
+                    ? 'bg-[#C86428] text-white shadow-sm'
+                    : 'text-[#6B625B] hover:text-[#1E1916]'
                 }`}
               >
                 <Coffee className="w-3.5 h-3.5" />
@@ -162,10 +161,10 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
               <button
                 type="button"
                 onClick={() => setOrderType('table')}
-                className={`flex-1 py-2 px-2 rounded-lg flex items-center justify-center gap-1.5 transition-all ${
+                className={`flex-1 py-2 px-2 rounded-xl flex items-center justify-center gap-1.5 transition-all ${
                   orderType === 'table'
-                    ? 'bg-amber-500 text-black font-semibold shadow-sm'
-                    : 'text-zinc-400 hover:text-white'
+                    ? 'bg-[#C86428] text-white shadow-sm'
+                    : 'text-[#6B625B] hover:text-[#1E1916]'
                 }`}
               >
                 <Calendar className="w-3.5 h-3.5" />
@@ -175,36 +174,36 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
 
             {/* Items List */}
             <div className="space-y-2.5">
-              <span className="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider block">
+              <span className="text-[11px] font-bold text-[#6B625B] uppercase tracking-wider block">
                 Выбранные блюда:
               </span>
               {items.map(({ item, quantity }) => (
                 <div
                   key={item.id}
-                  className="bg-zinc-900/70 border border-zinc-800/80 rounded-xl p-2.5 flex items-center gap-3"
+                  className="bg-[#FAF7F2] border border-[#EFE9DF] rounded-2xl p-2.5 flex items-center gap-3 shadow-warm-sm"
                 >
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="w-14 h-14 rounded-lg object-cover bg-zinc-950 flex-shrink-0"
+                    className="w-14 h-14 rounded-xl object-cover bg-white flex-shrink-0"
                   />
                   <div className="flex-1 min-w-0">
-                    <h4 className="text-xs font-semibold text-white truncate">{item.name}</h4>
-                    <span className="text-[11px] text-zinc-400 mt-0.5 block">{item.price} BYN</span>
+                    <h4 className="text-xs font-bold text-[#1E1916] truncate">{item.name}</h4>
+                    <span className="text-[11px] font-semibold text-[#C86428] mt-0.5 block">{item.price} BYN</span>
                   </div>
 
                   {/* Quantity controls */}
-                  <div className="flex items-center gap-1.5 bg-zinc-800 px-1.5 py-0.5 rounded-full border border-zinc-700">
+                  <div className="flex items-center gap-1.5 bg-white px-2 py-1 rounded-full border border-[#E8E0D5] shadow-sm">
                     <button
                       onClick={() => onRemoveFromCart(item)}
-                      className="w-5 h-5 rounded-full hover:bg-zinc-700 text-white flex items-center justify-center"
+                      className="w-5 h-5 rounded-full hover:bg-[#F3EFE7] text-[#1E1916] flex items-center justify-center transition-colors"
                     >
                       <Minus className="w-3 h-3" />
                     </button>
-                    <span className="text-xs font-bold text-amber-400 min-w-3 text-center">{quantity}</span>
+                    <span className="text-xs font-black text-[#1E1916] min-w-3 text-center">{quantity}</span>
                     <button
                       onClick={() => onAddToCart(item)}
-                      className="w-5 h-5 rounded-full bg-amber-500 text-black flex items-center justify-center hover:bg-amber-400"
+                      className="w-5 h-5 rounded-full bg-[#C86428] hover:bg-[#B0531C] text-white flex items-center justify-center transition-colors shadow-sm"
                     >
                       <Plus className="w-3 h-3" />
                     </button>
@@ -214,21 +213,21 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
             </div>
 
             {/* Order Form */}
-            <form onSubmit={handleSubmitOrder} className="space-y-3 pt-2 border-t border-zinc-800">
-              <span className="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider block">
+            <form onSubmit={handleSubmitOrder} className="space-y-3.5 pt-2 border-t border-[#E8E0D5]">
+              <span className="text-[11px] font-bold text-[#6B625B] uppercase tracking-wider block">
                 Данные для кухни и бариста:
               </span>
 
               {errorMessage && (
-                <div className="p-2.5 rounded-xl bg-red-500/10 border border-red-500/20 text-xs text-red-400 flex items-center gap-2">
+                <div className="p-3 rounded-2xl bg-red-50 border border-red-200 text-xs text-red-600 flex items-center gap-2">
                   <AlertCircle className="w-4 h-4 flex-shrink-0" />
                   <span>{errorMessage}</span>
                 </div>
               )}
 
               <div>
-                <label className="text-xs text-zinc-400 mb-1 flex items-center gap-1.5">
-                  <User className="w-3.5 h-3.5 text-zinc-500" />
+                <label className="text-xs font-semibold text-[#1E1916] mb-1 flex items-center gap-1.5">
+                  <User className="w-3.5 h-3.5 text-[#C86428]" />
                   <span>Ваше имя</span>
                 </label>
                 <input
@@ -236,13 +235,13 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                   placeholder="Как к вам обращаться"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-xl text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-amber-500 transition-colors"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF7F2] border border-[#E8E0D5] rounded-xl text-xs text-[#1E1916] placeholder-[#9E958C] focus:outline-none focus:border-[#C86428] transition-colors"
                 />
               </div>
 
               <div>
-                <label className="text-xs text-zinc-400 mb-1 flex items-center gap-1.5">
-                  <Phone className="w-3.5 h-3.5 text-zinc-500" />
+                <label className="text-xs font-semibold text-[#1E1916] mb-1 flex items-center gap-1.5">
+                  <Phone className="w-3.5 h-3.5 text-[#C86428]" />
                   <span>Телефон для связи</span>
                 </label>
                 <input
@@ -250,14 +249,14 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                   placeholder="+375 (29) 000-00-00"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className="w-full px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-xl text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-amber-500 transition-colors"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF7F2] border border-[#E8E0D5] rounded-xl text-xs text-[#1E1916] placeholder-[#9E958C] focus:outline-none focus:border-[#C86428] transition-colors"
                 />
               </div>
 
               {/* Time selection */}
               <div>
-                <label className="text-xs text-zinc-400 mb-1 flex items-center gap-1.5">
-                  <Clock className="w-3.5 h-3.5 text-zinc-500" />
+                <label className="text-xs font-semibold text-[#1E1916] mb-1 flex items-center gap-1.5">
+                  <Clock className="w-3.5 h-3.5 text-[#C86428]" />
                   <span>Когда будете в заведении:</span>
                 </label>
                 <div className="grid grid-cols-3 gap-1.5 mb-1.5">
@@ -269,10 +268,10 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                         setTime(t);
                         setCustomTime('');
                       }}
-                      className={`py-1.5 px-2 rounded-lg text-[11px] border transition-colors ${
+                      className={`py-2 px-2 rounded-xl text-[11px] font-medium border transition-colors ${
                         time === t && !customTime
-                          ? 'bg-amber-500/20 border-amber-500/60 text-amber-300 font-medium'
-                          : 'bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white'
+                          ? 'bg-[#FBF1EB] border-[#C86428] text-[#8C4015] font-bold shadow-sm'
+                          : 'bg-[#FAF7F2] border-[#E8E0D5] text-[#6B625B] hover:text-[#1E1916]'
                       }`}
                     >
                       {t}
@@ -284,14 +283,14 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                   placeholder="Или точное время (например, к 14:45)"
                   value={customTime}
                   onChange={(e) => setCustomTime(e.target.value)}
-                  className="w-full px-3 py-1.5 bg-zinc-900 border border-zinc-800 rounded-xl text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-amber-500 transition-colors"
+                  className="w-full px-3.5 py-2 bg-[#FAF7F2] border border-[#E8E0D5] rounded-xl text-xs text-[#1E1916] placeholder-[#9E958C] focus:outline-none focus:border-[#C86428] transition-colors"
                 />
               </div>
 
               {/* Table guests count if table reservation */}
               {orderType === 'table' && (
                 <div>
-                  <label className="text-xs text-zinc-400 mb-1 block">
+                  <label className="text-xs font-semibold text-[#1E1916] mb-1 block">
                     Количество гостей:
                   </label>
                   <div className="flex items-center gap-2">
@@ -300,10 +299,10 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                         type="button"
                         key={count}
                         onClick={() => setGuestsCount(count)}
-                        className={`w-8 h-8 rounded-lg text-xs font-semibold border transition-colors ${
+                        className={`w-8 h-8 rounded-xl text-xs font-bold border transition-colors ${
                           guestsCount === count
-                            ? 'bg-amber-500 text-black border-amber-500'
-                            : 'bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white'
+                            ? 'bg-[#C86428] text-white border-[#C86428]'
+                            : 'bg-[#FAF7F2] border-[#E8E0D5] text-[#6B625B] hover:text-[#1E1916]'
                         }`}
                       >
                         {count}
@@ -315,8 +314,8 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
 
               {/* Comment */}
               <div>
-                <label className="text-xs text-zinc-400 mb-1 flex items-center gap-1.5">
-                  <MessageSquare className="w-3.5 h-3.5 text-zinc-500" />
+                <label className="text-xs font-semibold text-[#1E1916] mb-1 flex items-center gap-1.5">
+                  <MessageSquare className="w-3.5 h-3.5 text-[#C86428]" />
                   <span>Пожелания к заказу (по желанию):</span>
                 </label>
                 <input
@@ -324,7 +323,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                   placeholder="Например, кофе на овсяном молоке, без лука"
                   value={comment}
                   onChange={(e) => setComment(e.target.value)}
-                  className="w-full px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-xl text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-amber-500 transition-colors"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF7F2] border border-[#E8E0D5] rounded-xl text-xs text-[#1E1916] placeholder-[#9E958C] focus:outline-none focus:border-[#C86428] transition-colors"
                 />
               </div>
             </form>
@@ -333,17 +332,17 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
 
         {/* Drawer Footer with Submit Button */}
         {items.length > 0 && (
-          <div className="p-4 bg-zinc-950 border-t border-zinc-800 space-y-3">
+          <div className="p-4 bg-[#FAF7F2] border-t border-[#E8E0D5] space-y-3">
             <div className="flex items-center justify-between text-sm">
-              <span className="text-zinc-400">Сумма заказа:</span>
-              <span className="text-lg font-bold text-white">
-                {total} <span className="text-xs font-normal text-zinc-400">BYN</span>
+              <span className="text-[#6B625B]">Сумма заказа:</span>
+              <span className="text-lg font-black text-[#1E1916]">
+                {total} <span className="text-xs font-normal text-[#6B625B]">BYN</span>
               </span>
             </div>
 
             <button
               onClick={handleSubmitOrder}
-              className="w-full py-3 px-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 active:scale-95 transition-all shadow-lg shadow-amber-500/20"
+              className="w-full py-3.5 px-4 rounded-xl bg-[#C86428] hover:bg-[#B0531C] active:bg-[#984414] text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 active:scale-95 transition-all shadow-md shadow-[#C86428]/20"
             >
               <Send className="w-4 h-4" />
               <span>
@@ -351,7 +350,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
               </span>
             </button>
 
-            <p className="text-[10px] text-zinc-500 text-center">
+            <p className="text-[10px] text-[#9E958C] text-center">
               Заказ мгновенно сформируется для отправки в Telegram кофейни. Оплата при получении.
             </p>
           </div>
