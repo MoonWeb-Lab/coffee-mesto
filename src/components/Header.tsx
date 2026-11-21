@@ -22,12 +22,13 @@ export const Header: React.FC<HeaderProps> = ({ cartCount, cartTotal, onOpenCart
       <div className="max-w-2xl mx-auto px-4 py-4 flex items-center justify-between">
         {/* Brand Monogram & Title */}
         <div className="flex items-center gap-3">
-          {/* Geometric Monogram Icon matching Instagram profile */}
-          <div className="w-12 h-12 rounded-full border border-zinc-700 bg-black flex items-center justify-center p-2 shadow-inner">
-            <svg viewBox="0 0 100 100" className="w-full h-full text-zinc-100 fill-none stroke-current stroke-[7]">
-              <circle cx="50" cy="50" r="45" strokeWidth="4" />
-              <path d="M26 72 V28 L50 62 L74 28 V72" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
+          {/* Real Avatar Logo from Instagram profile */}
+          <div className="w-12 h-12 rounded-full overflow-hidden border border-zinc-700 bg-white flex items-center justify-center p-1.5 shadow-md flex-shrink-0">
+            <img 
+              src="./images/logo.webp" 
+              alt="Логотип Кофе Место" 
+              className="w-full h-full object-contain" 
+            />
           </div>
           
           <div>
