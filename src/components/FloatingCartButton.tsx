@@ -18,17 +18,17 @@ export const FloatingCartButton: React.FC<FloatingCartButtonProps> = ({
     <div className="fixed bottom-4 inset-x-0 z-40 px-4 max-w-md mx-auto pointer-events-none animate-slideUp">
       <button
         onClick={onOpen}
-        className="pointer-events-auto w-full py-3.5 px-5 rounded-2xl bg-[#C86428] hover:bg-[#B0531C] active:bg-[#984414] text-white font-bold flex items-center justify-between shadow-xl shadow-[#C86428]/30 active:scale-[0.98] transition-all"
+        className="pointer-events-auto w-full py-3 px-4 rounded-xl bg-[#2C5E43] hover:bg-[#234B35] active:bg-[#1A3B2A] text-white font-medium flex items-center justify-between shadow-clean-lg active:scale-[0.98] transition-all"
       >
         <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-full bg-white text-[#C86428] flex items-center justify-center text-xs font-black shadow-sm">
+          <div className="w-6 h-6 rounded-lg bg-white text-[#2C5E43] flex items-center justify-center text-xs font-bold shadow-sm">
             {count}
           </div>
-          <span className="text-xs uppercase tracking-wider font-extrabold">Корзина предзаказа</span>
+          <span className="text-xs font-semibold">Ваш заказ</span>
         </div>
 
         <div className="flex items-center gap-2">
-          <span className="text-sm font-black">{total} BYN</span>
+          <span className="text-sm font-bold">{total} BYN</span>
           <ArrowRight className="w-4 h-4" />
         </div>
       </button>

@@ -3,35 +3,39 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Кофе Место — Меню завтраков и кофе | Минск, Независимости 43</title>
-    <meta name="description" content="Онлайн-меню кофейни «Кофе Место» на Независимости, 43 в Минске. Драники, сырники, боулы и спешелти кофе Spiritus. Быстрый предзаказ навынос." />
+    <title>Кофе Место: меню завтраков и спешелти кофе | Минск, Независимости 43</title>
+    <meta name="description" content="Онлайн-меню кофейни Кофе Место в Минске на Независимости 43. Драники, сырники, боулы и кофе свежей обжарки Spiritus. Быстрый предзаказ навынос к вашему визиту." />
     <link rel="canonical" href="https://moonweb-lab.github.io/coffee-mesto/" />
 
-    <!-- Open Graph (Instagram, Telegram, Facebook, WhatsApp) -->
+    <!-- Preload Critical Hero Image -->
+    <link rel="preload" as="image" href="./images/menu/draniki-salmon.webp" type="image/webp" fetchpriority="high" />
+
+    <!-- Open Graph (Instagram, Telegram, WhatsApp) -->
     <meta property="og:site_name" content="Кофе Место" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://moonweb-lab.github.io/coffee-mesto/" />
-    <meta property="og:title" content="Кофе Место — Меню завтраков и кофе | Минск" />
-    <meta property="og:description" content="Свежие драники, сырники и спешелти кофе Spiritus. Быстрый предзаказ навынос без очереди." />
-    <meta property="og:image" content="https://moonweb-lab.github.io/coffee-mesto/images/menu/local-breakfast.webp" />
-    <meta property="og:image:secure_url" content="https://moonweb-lab.github.io/coffee-mesto/images/menu/local-breakfast.webp" />
+    <meta property="og:title" content="Кофе Место: меню завтраков и кофе | Минск" />
+    <meta property="og:description" content="Свежие драники, сырники, боулы и кофе свежей обжарки Spiritus. Быстрый предзаказ навынос ко времени." />
+    <meta property="og:image" content="https://moonweb-lab.github.io/coffee-mesto/images/menu/draniki-salmon.webp" />
+    <meta property="og:image:secure_url" content="https://moonweb-lab.github.io/coffee-mesto/images/menu/draniki-salmon.webp" />
     <meta property="og:image:type" content="image/webp" />
     <meta property="og:image:width" content="800" />
     <meta property="og:image:height" content="600" />
-    <meta property="og:image:alt" content="Фирменный местный завтрак в кофейне Кофе Место" />
+    <meta property="og:image:alt" content="Хрустящие драники с лососем и взбитой фетой в кофейне Кофе Место" />
     <meta property="og:locale" content="ru_RU" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Кофе Место — Меню завтраков и кофе | Минск" />
-    <meta name="twitter:description" content="Свежие драники, сырники и спешелти кофе Spiritus. Быстрый предзаказ навынос без очереди." />
-    <meta name="twitter:image" content="https://moonweb-lab.github.io/coffee-mesto/images/menu/local-breakfast.webp" />
+    <meta name="twitter:title" content="Кофе Место: меню завтраков и кофе | Минск" />
+    <meta name="twitter:description" content="Свежие драники, сырники, боулы и кофе свежей обжарки Spiritus. Быстрый предзаказ навынос ко времени." />
+    <meta name="twitter:image" content="https://moonweb-lab.github.io/coffee-mesto/images/menu/draniki-salmon.webp" />
 
     <link rel="icon" type="image/png" href="./favicon.png" />
     
+    <!-- Google Fonts: Playfair Display + Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
     
     <!-- Structured Data (Schema.org Restaurant) -->
     <script type="application/ld+json">
@@ -39,7 +43,7 @@
       "@context": "https://schema.org",
       "@type": "CafeOrCoffeeShop",
       "name": "Кофе Место",
-      "image": "https://moonweb-lab.github.io/coffee-mesto/images/menu/local-breakfast.webp",
+      "image": "https://moonweb-lab.github.io/coffee-mesto/images/menu/draniki-salmon.webp",
       "url": "https://moonweb-lab.github.io/coffee-mesto/",
       "address": {
         "@type": "PostalAddress",
@@ -55,7 +59,7 @@
     }
     </script>
   </head>
-  <body class="bg-[#FAF7F2] text-[#1E1916] antialiased selection:bg-[#F3E8DC] selection:text-[#C86428]">
+  <body class="bg-[#F4F4F1] text-[#141414] font-sans antialiased selection:bg-[#EAF1ED] selection:text-[#2C5E43]">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

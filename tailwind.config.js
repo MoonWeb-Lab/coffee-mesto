@@ -7,32 +7,36 @@ export default {
   theme: {
     extend: {
       colors: {
-        page: '#FAF7F2',
+        alabaster: '#F4F4F1',
         surface: '#FFFFFF',
-        sand: '#F7F3EC',
-        caramel: {
-          DEFAULT: '#C86428',
-          hover: '#B0531C',
-          active: '#984414',
-          light: '#FBF1EB',
-          peach: '#F3E8DC',
+        graphite: {
+          DEFAULT: '#141414',
+          subtle: '#222220',
+          muted: '#666663',
+          faint: '#8C8C88',
         },
-        coffee: {
-          dark: '#1E1916',
-          title: '#241E1A',
-          body: '#6B625B',
-          muted: '#9E958C',
-          border: '#E8E0D5',
-          borderLight: '#F0EAE1',
+        matcha: {
+          DEFAULT: '#2C5E43',
+          hover: '#234B35',
+          active: '#1A3B2A',
+          light: '#EAF1ED',
+          badge: '#E3ECE7',
+          dark: '#1C3E2C',
+        },
+        hairline: {
+          DEFAULT: '#E4E4E0',
+          light: '#EFEFEA',
+          dark: '#D2D2CC',
         }
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
       },
       boxShadow: {
-        'warm-sm': '0 2px 8px rgba(30, 25, 22, 0.04)',
-        'warm': '0 8px 30px rgba(30, 25, 22, 0.05)',
-        'warm-lg': '0 16px 40px rgba(30, 25, 22, 0.08)',
+        'clean-sm': '0 1px 3px rgba(20, 20, 20, 0.03)',
+        'clean': '0 4px 20px rgba(20, 20, 20, 0.04)',
+        'clean-lg': '0 12px 32px rgba(20, 20, 20, 0.07)',
       },
       screens: {
         'xs': '390px',

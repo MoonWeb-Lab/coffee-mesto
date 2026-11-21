@@ -88,7 +88,7 @@ export const App: React.FC = () => {
 
   return (
     <LazyMotion features={domAnimation}>
-      <div className="min-h-screen bg-[#FAF7F2] text-[#1E1916] flex flex-col font-sans selection:bg-[#F3E8DC] selection:text-[#C86428]">
+      <div className="min-h-screen bg-[#F4F4F1] text-[#141414] flex flex-col font-sans selection:bg-[#EAF1ED] selection:text-[#2C5E43]">
         {/* Header */}
         <Header
           cartCount={cartCount}
@@ -96,7 +96,7 @@ export const App: React.FC = () => {
           onOpenCart={() => setIsCartOpen(true)}
         />
 
-        {/* Hero Section with Morning Coffee Bistro Atmosphere */}
+        {/* Hero Section */}
         <Hero
           featuredItem={featuredItem}
           onAddToCart={handleAddToCart}
@@ -114,35 +114,36 @@ export const App: React.FC = () => {
         {/* Menu Catalog Grid */}
         <main className="flex-1 max-w-5xl mx-auto px-4 sm:px-6 py-4 sm:py-6 w-full">
           <div className="flex items-center justify-between mb-3 sm:mb-4">
-            <h2 className="text-base sm:text-lg font-extrabold text-[#1E1916] tracking-tight flex items-center gap-2">
+            <h2 className="font-serif text-base sm:text-lg font-bold text-[#141414] tracking-tight flex items-center gap-2">
               <span>Меню завтраков и кофе</span>
-              <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-[#F3E8DC] text-[#8C4015]">
+              <span className="text-xs font-semibold px-2 py-0.5 rounded-lg bg-[#EAF1ED] text-[#1C3E2C] border border-[#D2E2D8]">
                 {filteredItems.length}
               </span>
             </h2>
           </div>
 
           {filteredItems.length === 0 ? (
-            <div className="py-16 text-center bg-white border border-[#E8E0D5] rounded-3xl p-8 shadow-warm">
-              <p className="text-sm font-bold text-[#1E1916]">Блюд не найдено</p>
-              <p className="text-xs text-[#6B625B] mt-1">
+            <div className="py-16 text-center bg-white border border-[#E4E4E0] rounded-2xl p-8 shadow-clean">
+              <p className="font-serif text-sm font-bold text-[#141414]">Блюд не найдено</p>
+              <p className="text-xs text-[#666663] mt-1">
                 По запросу «{searchQuery}» ничего не нашлось. Попробуйте сбросить поиск.
               </p>
               <button
                 onClick={() => setSearchQuery('')}
-                className="mt-4 px-5 py-2 rounded-full bg-[#1E1916] text-xs font-semibold text-white hover:bg-[#322A25] transition-colors shadow-warm-sm"
+                className="mt-4 px-4 py-2 rounded-xl bg-[#2C5E43] text-xs font-medium text-white hover:bg-[#234B35] transition-colors shadow-clean-sm active:scale-95"
               >
-                Сбросить фильтр
+                Сбросить поиск
               </button>
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {filteredItems.map((item) => {
+              {filteredItems.map((item, index) => {
                 const cartItem = cart.find((ci) => ci.item.id === item.id);
                 return (
                   <MenuCard
                     key={item.id}
                     item={item}
+                    priority={index === 0}
                     cartQuantity={cartItem ? cartItem.quantity : 0}
                     onAddToCart={handleAddToCart}
                     onRemoveFromCart={handleRemoveFromCart}

@@ -10,46 +10,47 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ cartCount, cartTotal, onOpenCart }) => {
   return (
-    <header className="sticky top-0 z-30 bg-[#FAF7F2]/90 backdrop-blur-md border-b border-[#E8E0D5]/80 transition-all">
+    <header className="sticky top-0 z-30 bg-[#F4F4F1]/90 backdrop-blur-md border-b border-[#E4E4E0] transition-colors">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-4">
         {/* Brand Logo & Name */}
         <div className="flex items-center gap-3">
-          <div className="w-11 h-11 rounded-full overflow-hidden border border-[#E0D7CA] bg-white flex items-center justify-center p-1 shadow-warm-sm flex-shrink-0">
+          <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full overflow-hidden border border-[#E4E4E0] bg-white flex items-center justify-center p-1 shadow-clean-sm flex-shrink-0">
             <img
               src="./images/logo.webp"
               alt="Логотип Кофе Место"
+              width="44"
+              height="44"
               className="w-full h-full object-contain"
             />
           </div>
 
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-base sm:text-lg font-bold tracking-tight text-[#1E1916]">
+              <span className="font-serif text-lg sm:text-xl font-bold tracking-tight text-[#141414]">
                 {CAFE_INFO.name}
               </span>
-              <span className="text-[10px] font-semibold uppercase tracking-wider bg-[#F3E8DC] text-[#8C4015] px-2 py-0.5 rounded-full">
+              <span className="text-[10px] font-semibold uppercase tracking-wider bg-[#E3ECE7] text-[#1C3E2C] border border-[#D2E2D8] px-2 py-0.5 rounded-md">
                 Кофейня
               </span>
             </div>
 
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 text-[11px] text-[#6B625B] mt-0.5">
+            <div className="flex flex-wrap items-center gap-x-2.5 gap-y-0.5 text-[11px] text-[#666663] mt-0.5">
               <span className="flex items-center gap-1">
-                <MapPin className="w-3 h-3 text-[#C86428]" />
-                {CAFE_INFO.address}
+                <MapPin className="w-3 h-3 text-[#2C5E43]" />
+                <span>{CAFE_INFO.address}</span>
               </span>
-              <span className="hidden sm:inline text-[#D8CEBF]">•</span>
-              <span className="hidden sm:inline text-[#786F66]">
+              <span className="hidden sm:inline text-[#D0D0C8]">•</span>
+              <span className="hidden sm:inline">
                 м. {CAFE_INFO.subway}
               </span>
             </div>
           </div>
         </div>
 
-        {/* Actions */}
+        {/* Action Controls */}
         <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
-          {/* Working hours pill on desktop */}
-          <div className="hidden md:flex items-center gap-1.5 text-xs text-[#6B625B] bg-white px-3 py-1.5 rounded-full border border-[#E8E0D5] shadow-warm-sm">
-            <Clock className="w-3.5 h-3.5 text-[#C86428]" />
+          <div className="hidden md:flex items-center gap-1.5 text-xs text-[#666663] bg-white px-3 py-1.5 rounded-xl border border-[#E4E4E0] shadow-clean-sm">
+            <Clock className="w-3.5 h-3.5 text-[#2C5E43]" />
             <span>Пн-Пт 09:00 - 22:00</span>
           </div>
 
@@ -57,7 +58,7 @@ export const Header: React.FC<HeaderProps> = ({ cartCount, cartTotal, onOpenCart
             href={`https://instagram.com/${CAFE_INFO.instagram}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-9 h-9 rounded-full bg-white border border-[#E8E0D5] flex items-center justify-center text-[#6B625B] hover:text-[#C86428] hover:border-[#C86428]/40 transition-colors shadow-warm-sm"
+            className="w-9 h-9 rounded-xl bg-white border border-[#E4E4E0] flex items-center justify-center text-[#666663] hover:text-[#2C5E43] hover:border-[#2C5E43]/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C5E43] focus-visible:ring-offset-2 active:scale-95 transition-all shadow-clean-sm"
             title="Instagram заведения"
           >
             <Instagram className="w-4 h-4" />
@@ -65,12 +66,12 @@ export const Header: React.FC<HeaderProps> = ({ cartCount, cartTotal, onOpenCart
 
           <button
             onClick={onOpenCart}
-            className="flex items-center gap-2 px-3.5 py-2 rounded-full bg-[#C86428] hover:bg-[#B0531C] active:bg-[#984414] text-white font-semibold text-xs active:scale-95 transition-all shadow-md shadow-[#C86428]/20"
+            className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#2C5E43] hover:bg-[#234B35] active:bg-[#1A3B2A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C5E43] focus-visible:ring-offset-2 text-white font-medium text-xs active:scale-95 transition-all shadow-clean-sm"
           >
             <ShoppingBag className="w-4 h-4" />
             <span className="hidden xs:inline">Заказ</span>
             {cartCount > 0 && (
-              <span className="bg-white text-[#C86428] text-[11px] font-bold px-2 py-0.5 rounded-full shadow-sm">
+              <span className="bg-white text-[#2C5E43] text-[11px] font-bold px-2 py-0.5 rounded-lg shadow-sm">
                 {cartTotal} BYN
               </span>
             )}

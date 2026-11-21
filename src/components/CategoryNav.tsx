@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Search, X } from 'lucide-react';
 import { CATEGORIES } from '../data/menuData';
 
@@ -15,50 +15,84 @@ export const CategoryNav: React.FC<CategoryNavProps> = ({
   searchQuery,
   onSearchChange,
 }) => {
-  return (
-    <div className="sticky top-[69px] z-20 bg-[#FAF7F2]/95 backdrop-blur-md border-b border-[#E8E0D5] transition-all">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-2 pb-2 sm:pt-2.5 sm:pb-2.5">
-        {/* Search bar */}
-        <div className="relative mb-2 sm:mb-2.5">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9E958C]" />
-          <input
-            type="text"
-            placeholder="Найти драники, сырники, боул или кофе..."
-            value={searchQuery}
-            onChange={(e) => onSearchChange(e.target.value)}
-            className="w-full pl-10 pr-9 py-2.5 bg-white border border-[#E8E0D5] rounded-2xl text-xs sm:text-sm text-[#1E1916] placeholder-[#9E958C] focus:outline-none focus:border-[#C86428] focus:ring-1 focus:ring-[#C86428]/30 shadow-warm-sm transition-all"
-          />
-          {searchQuery && (
-            <button
-              onClick={() => onSearchChange('')}
-              className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#9E958C] hover:text-[#1E1916]"
-            >
-              <X className="w-4 h-4" />
-            </button>
-          )}
-        </div>
+  const [isSearchOpen, setIsSearchOpen] = useState(Boolean(searchQuery));
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
-        {/* Categories scrollable row */}
-        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
-          {CATEGORIES.map((cat) => {
-            const isActive = activeCategory === cat.id;
-            return (
+  useEffect(() => {
+    if (isSearchOpen && searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, [isSearchOpen]);
+
+  const handleToggleSearch = () => {
+    if (isSearchOpen) {
+      if (searchQuery) onSearchChange('');
+      setIsSearchOpen(false);
+    } else {
+      setIsSearchOpen(true);
+    }
+  };
+
+  return (
+    <div className="sticky top-[65px] z-20 bg-[#F4F4F1]/95 backdrop-blur-md border-b border-[#E4E4E0] transition-colors">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-2.5">
+        <div className="flex items-center gap-2">
+          {/* Categories row (slides or shrinks when search is open) */}
+          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5 flex-1 min-w-0">
+            {CATEGORIES.map((cat) => {
+              const isActive = activeCategory === cat.id && !searchQuery;
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => {
+                    onSelectCategory(cat.id);
+                    if (searchQuery) onSearchChange('');
+                    setIsSearchOpen(false);
+                  }}
+                  className={`flex-shrink-0 px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all duration-200 border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C5E43] focus-visible:ring-offset-1 active:scale-95 ${
+                    isActive
+                      ? 'bg-[#2C5E43] text-white border-[#2C5E43] shadow-clean-sm font-semibold'
+                      : 'bg-white text-[#666663] hover:text-[#141414] hover:bg-[#EFEFEA] border-[#E4E4E0]'
+                  }`}
+                >
+                  {cat.name}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Compact Search Trigger / Inline Input */}
+          <div className="flex items-center flex-shrink-0">
+            {isSearchOpen ? (
+              <div className="flex items-center gap-1 bg-white border border-[#2C5E43] rounded-xl px-2.5 py-1 shadow-clean-sm animate-fadeIn">
+                <Search className="w-3.5 h-3.5 text-[#2C5E43] flex-shrink-0" />
+                <input
+                  ref={searchInputRef}
+                  type="text"
+                  placeholder="Поиск по меню..."
+                  value={searchQuery}
+                  onChange={(e) => onSearchChange(e.target.value)}
+                  className="w-36 sm:w-56 text-xs text-[#141414] placeholder-[#888884] bg-transparent focus:outline-none py-0.5"
+                />
+                <button
+                  onClick={handleToggleSearch}
+                  className="text-[#888884] hover:text-[#141414] focus-visible:outline-none rounded p-0.5"
+                  title="Закрыть поиск"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            ) : (
               <button
-                key={cat.id}
-                onClick={() => {
-                  onSelectCategory(cat.id);
-                  if (searchQuery) onSearchChange('');
-                }}
-                className={`flex-shrink-0 px-3.5 py-2 rounded-full text-xs font-medium transition-all duration-200 ${
-                  isActive
-                    ? 'bg-[#1E1916] text-white shadow-warm-sm font-semibold scale-[1.02]'
-                    : 'bg-white text-[#6B625B] hover:text-[#1E1916] hover:bg-[#F3EFE7] border border-[#E8E0D5]'
-                }`}
+                onClick={handleToggleSearch}
+                className="w-8 h-8 rounded-xl bg-white border border-[#E4E4E0] flex items-center justify-center text-[#666663] hover:text-[#2C5E43] hover:border-[#2C5E43]/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C5E43] active:scale-95 transition-all shadow-clean-sm"
+                title="Искать блюдо"
+                aria-label="Искать блюдо"
               >
-                {cat.name}
+                <Search className="w-4 h-4" />
               </button>
-            );
-          })}
+            )}
+          </div>
         </div>
       </div>
     </div>
